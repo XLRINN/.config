@@ -1,0 +1,38 @@
+{
+  description = "LOKI";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    nix-brew.url = "github:rycee/home-manager";
+  };
+
+  outputs = { self, nixpkgs, home-manager, nix-brew }: {
+        
+ nixosConfigurations = {
+      loki = nixpkgs.lib.nixosSystem {
+        system = "x86_64-darwin";
+		
+		modules = [
+          # Define your NixOS configuration modules here
+        ];
+        configuration = {
+          nixpkgs.config.allowUnfree = true;  # Allow unfree packages if needed
+        };
+      };
+    };
+
+    homeConfigurations = {
+      macbook = home-manager.lib.homeManagerConfiguration {
+        home.file = ./home.nix;  # Replace with your home-manager configuration
+      };
+    };
+
+    nixBrewConfigurations = {
+      macbook = nix-brew.lib.nixBrewConfiguration {
+        brewfile = ./Brewfile;  # Path to your Brewfile
+      };
+    };
+  };
+}
+

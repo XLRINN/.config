@@ -1,0 +1,67 @@
+{
+  description = "LOKI";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    nix-brew.url = "github:rycee/home-manager";
+    #nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+  };
+
+
+
+
+
+ outputs = { self, nixpkgs, home-manager, darwin,nix-brew, nix-homebrew, ... }:
+    let
+      system = "x86_64-darwin";
+      pkgs = import nixpkgs { system = system; config.allowUnfree = true; };
+    in {
+      # Define system-wide packages and configurations
+      darwinConfigurations = {
+        loki = darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          modules = [
+            {
+              
+              services.nix-daemon.enable = true;
+              system.stateVersion = 4;
+            }
+          ];
+        };
+      };
+
+
+
+
+/*
+  outputs = { self, nixpkgs, home-manager,nix-darwin,nix-brew }: {
+        
+ darwinConfigurations = {
+       loki = nixpkgs.lib.nixosSystem {
+        system = "x86_64-darwin";
+		
+		modules = [
+          # Define your NixOS configuration modules here
+        ];
+        configuration = {
+          nixpkgs.config.allowUnfree = true;  # Allow unfree packages if needed
+        };
+      };
+    };
+*/
+    homeConfigurations = {
+      macbook = home-manager.lib.homeManagerConfiguration {
+        home.file = ./home.nix;  # Replace with your home-manager configuration
+      };
+    };
+
+    nixBrewConfigurations = {
+      macbook = nix-brew.lib.nixBrewConfiguration {
+        brewfile = ./Brewfile;  # Path to your Brewfile
+      };
+    };
+  };
+}
+
