@@ -22,12 +22,10 @@ with pkgs; [
   zsh
   lazygit
   fzf
-  starship
-  
-
+  ddgr
+  zoxide
   docker
   docker-compose
-
   # Text and terminal utilities
   htop
   hunspell

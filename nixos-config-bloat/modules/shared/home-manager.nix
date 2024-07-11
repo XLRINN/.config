@@ -19,6 +19,13 @@ let name = "david";
         src = lib.cleanSource ./config;
         file = "p10k.zsh";
       }
+      /*
+        {
+          name = "Zellij-conf";
+        src = lib.cleanSource ./config;
+        file = "zellij.nix";
+        }
+        */
     ];
 
     initExtraFirst = ''
@@ -194,10 +201,10 @@ let name = "david";
       };
 
       window = {
-        opacity = 1.0;
+        opacity = 0.9;
         padding = {
-          x = 24;
-          y = 24;
+          x = 14;
+          y = 14;
         };
       };
 

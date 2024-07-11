@@ -4,13 +4,12 @@ _:
   
   "homebrew/cask/docker"
   "visual-studio-code"
-   "Spotify"
-   "vlc"
-   "rectangle"
-   "alacritty"
+  "vlc"
+  "rectangle"
+  "alacritty"
   "bitwarden"
-  "wave"
-  "warp"
+  "warp-terminal"
+
   # Browsers
   "google-chrome"
   "firefox"
